@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:motel_app/ui/shared/BottomNav.dart';
 import 'package:provider/provider.dart';
 import 'locator.dart';
 import './ui/Router.dart';
@@ -20,7 +21,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         onGenerateRoute: Router.generateRoute,
-        theme: ThemeData(),
+        theme: ThemeData(
+          backgroundColor: Color.fromRGBO(245,250,255,1)
+        ),
+        home: BottomNav(),
       ),
     );
   }

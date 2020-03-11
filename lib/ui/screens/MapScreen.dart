@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'package:motel_app/ui/shared/CurvedNavBar.dart';
-
 class MapScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Center(
         child: Text('Map Screen'),
       ),
-      bottomNavigationBar: CurvedNavBar(),
     );
   }
 }

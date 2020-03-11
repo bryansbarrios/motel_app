@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MapScreen extends StatelessWidget {
+class NoLoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
