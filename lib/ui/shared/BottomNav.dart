@@ -19,7 +19,7 @@ class _BottomNavState extends State<BottomNav> {
       body: _screenChooser(_selectedIndex),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(color: Colors.white, boxShadow: [
-          BoxShadow(blurRadius: 40, color: Colors.lightBlueAccent.withOpacity(.04))
+          BoxShadow(blurRadius: 40, color: Colors.lightBlueAccent.withOpacity(.05))
         ]),
         child: SafeArea(
           child: Padding(

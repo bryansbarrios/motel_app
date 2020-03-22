@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:motel_app/ui/widgets/MotelList.dart';
 
 class HomeScreen extends StatelessWidget {
 
@@ -7,7 +6,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      body: MotelList(),
+      body: Center(
+        child: Text('Home Screen'),
+      )
     );
   }
 }

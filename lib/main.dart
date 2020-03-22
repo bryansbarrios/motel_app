@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:motel_app/ui/shared/BottomNav.dart';
 import 'package:provider/provider.dart';
 import 'locator.dart';
@@ -9,7 +10,6 @@ void main() {
   setupLocator();
   runApp(MyApp());
 }
- 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -19,10 +19,14 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: '/',
+        initialRoute: '/noLogin',
         onGenerateRoute: Router.generateRoute,
         theme: ThemeData(
-          backgroundColor: Color.fromRGBO(245,250,255,1)
+          backgroundColor: Color.fromRGBO(245,250,255,1),
+          hintColor: Color.fromRGBO(248,249,253,1),
+          textTheme: GoogleFonts.nunitoSansTextTheme(
+            Theme.of(context).textTheme,
+          )
         ),
         home: BottomNav(),
       ),

@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:motel_app/ui/screens/FavoriteMotelsScreen.dart';
 import 'package:motel_app/ui/screens/HomeScreen.dart';
+import 'package:motel_app/ui/screens/LoginScreen.dart';
 import 'package:motel_app/ui/screens/MapScreen.dart';
+import 'package:motel_app/ui/screens/NoLoginScreen.dart';
+import 'package:motel_app/ui/screens/RegisterScreen.dart';
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -20,6 +23,21 @@ class Router {
       case '/map':
         return MaterialPageRoute(
           builder: (_) => MapScreen()
+        );
+      
+      case '/noLogin':
+        return MaterialPageRoute(
+          builder: (_) => NoLoginScreen()
+        );
+      
+      case '/login':
+        return MaterialPageRoute(
+          builder: (_) => LoginScreen()
+        );
+      
+      case '/register':
+        return MaterialPageRoute(
+          builder: (_) => RegisterScreen()
         );
       
       default: 
