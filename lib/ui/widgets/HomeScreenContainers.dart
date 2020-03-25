@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-Widget createContainer (String title){
+Widget createContainer (String title)
+{
   if(title=='Busca tu motel')
   {
     return Container(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:motel_app/core/models/Motel.dart';
 import 'package:motel_app/core/viewmodels/MotelViewModel.dart';
+import 'package:motel_app/ui/widgets/HomeScreenExpanded.dart';
 import 'package:provider/provider.dart';
 
 class MotelList extends StatelessWidget {
@@ -20,62 +21,46 @@ class MotelList extends StatelessWidget {
             children: motels.map((motel) => Column(
               children: <Widget>[
                 Container(
-                  width: 630,
-                  height: 336,
-                  padding: EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    color: Colors.white,
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 10.0 
+                      )
+                    ]
+                  ),
+                  margin: EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 0),
                   child: Column(
                     children: <Widget>[
-                      FittedBox(
-                        child: Image.network(motel.photo),
-                        fit: BoxFit.fill,
+                      FadeInImage(
+                        image: NetworkImage(motel.photo),
+                        placeholder: AssetImage('assets/jar-loading.gif'),
+                        height: 150,
+                        fit: BoxFit.cover,
                       ),
-                      Row(
-                        children: <Widget>[
-                          Expanded(
-                            flex: 10,
-                            child: Text(motel.motelName, textAlign: TextAlign.left, style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                                fontFamily: 'Inter',
-                              ),
-                            )
-                          ),
-                          Expanded(
-                            flex: 5,
-                            child: Text('5.0', textAlign: TextAlign.right, style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14, 
-                                fontFamily: 'Inter',
-                              )
-                            )
-                          ),
-                        ]
+                      Container(
+                        padding: EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 0.0),
+                        child: Row(
+                          children: <Widget>[
+                          createExpanded(motel.motelName, 1),
+                          createExpanded('5.0', 2),
+                          ],
+                        ),
                       ),
-                      Row(
-                        children: <Widget>[
-                          Expanded(
-                            flex: 5,
-                            child: Text('Masaya', textAlign: TextAlign.left, style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14,
-                                fontFamily: 'Inter',
-                              ),
-                            )
-                          ),
-                          Expanded(
-                            flex: 5,
-                            child: Text('C\$ '+motel.price, textAlign: TextAlign.right, style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14,
-                                fontFamily: 'Inter',
-                              )
-                            )
-                          ),
-                        ],
+                      Container(
+                        padding: EdgeInsets.fromLTRB(8.0, 2.0, 8.0, 0.0),
+                        child: Row(
+                          children: <Widget>[
+                            createExpanded('Masaya', 3),
+                            createExpanded(motel.price, 4),
+                          ],
+                        )
                       )
                     ],
                   )
-                )
+                ),
               ]
             )).toList()
           );
