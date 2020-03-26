@@ -8,10 +8,6 @@ class HomeScreen extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: AppBar(
-        title: Text('Bienvenido'),
-        centerTitle: true,
-      ),
       body: ListView (
         shrinkWrap: true,
           children: <Widget>[
