@@ -30,8 +30,8 @@ class AuthService {
       FirebaseUser user = result.user;
       return user;
     } catch (e) {
-      print (e.toString());
-      return null;
+      print (e.message.toString());
+      return e.message.toString();
     }
   }
 
@@ -41,8 +41,8 @@ class AuthService {
       FirebaseUser user = result.user;
       return _userFromFirebaseUser(user);
     } catch (e) {
-      print(e.toString());
-      return null;
+      print (e.message.toString());
+      return e.message.toString();
     }
   }
 

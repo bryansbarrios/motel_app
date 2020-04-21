@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:motel_app/core/models/User.dart';
 import 'package:motel_app/core/services/AuthService.dart';
-import 'package:motel_app/core/viewmodels/MotelViewModel.dart';
 import 'package:motel_app/core/viewmodels/UserViewModel.dart';
 import 'package:motel_app/ui/shared/LoginFooter.dart';
 import 'package:motel_app/ui/shared/LoginHeader.dart';
@@ -15,6 +14,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
+  final _key = GlobalKey<ScaffoldState>();
 
   final AuthService _auth = AuthService();
 
@@ -38,6 +38,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     final userProvider = Provider.of<UserViewModel>(context);
 
     return Scaffold(
+      key: _key,
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -211,13 +212,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             if (_formKey.currentState.validate()) {
                               setState(() => loading = true);
                               dynamic result = await _auth.registerWithEmailAndPassword(_emailController.text, _passwordController.text);
-                              if (result == null) {
-                                loading = false;
-                                print("Error");
+                              if (result == "The email address is already in use by another account.") {
+                                _key.currentState.showSnackBar(SnackBar(content: Text("Correo electrónico en uso")));
                               } else {
                                 await userProvider.addUser(
                                   UserData(
-                                    uid: '1', 
+                                    uid: '2', 
                                     fullName: _fullNameController.text, 
                                     email: _emailController.text, 
                                     createdAt: DateTime.now()

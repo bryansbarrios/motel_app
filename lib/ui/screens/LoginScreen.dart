@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:motel_app/ui/shared/LoginFooter.dart';
 import 'package:motel_app/ui/shared/LoginHeader.dart';
 
+import '../../core/services/AuthService.dart';
+
 class LoginScreen extends StatefulWidget {
 
   @override
@@ -11,6 +13,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _key = GlobalKey<ScaffoldState>();
+
+  final AuthService _auth = AuthService();
 
   TextEditingController _emailController;
   TextEditingController _passwordController;
@@ -159,7 +163,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       GestureDetector(
                         onTap: () async {
                           if (_formKey.currentState.validate()) {
-                            
+                            _formKey.currentState.save();
+                            dynamic result = await _auth.signInWithEmailAndPassword(_emailController.text, _passwordController.text);
+                            if (result == "The password is invalid or the user does not have a password.") {
+                              _key.currentState.showSnackBar(SnackBar(content: Text("Correo electrónico o contraseña incorrecta")));
+                            } else if (result == "There is no user record corresponding to this identifier. The user may have been deleted.") {
+                              _key.currentState.showSnackBar(SnackBar(content: Text("Correo electrónico no registrado")));
+                            } else {
+                              print("GO");
+                            }
                           }
                         },
                         child: Container(

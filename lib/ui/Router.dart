@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:motel_app/ui/screens/FavoriteMotelsScreen.dart';
 import 'package:motel_app/ui/screens/HomeScreen.dart';
-import 'package:motel_app/ui/screens/LoginScreen.copy.dart';
+import 'package:motel_app/ui/screens/LoginScreen.dart';
 import 'package:motel_app/ui/screens/MapScreen.dart';
 import 'package:motel_app/ui/screens/NoLoginScreen.dart';
 import 'package:motel_app/ui/screens/RegisterScreen.dart';
