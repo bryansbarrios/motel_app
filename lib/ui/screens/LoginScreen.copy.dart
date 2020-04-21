@@ -12,18 +12,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _key = GlobalKey<ScaffoldState>();
 
-  TextEditingController _emailController;
-  TextEditingController _passwordController;
-
   bool _showPassword = false;
-
-  @override
-  void initState() { 
-    super.initState();
-    _emailController = TextEditingController(text: "");  
-    _passwordController = TextEditingController(text: "");  
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +87,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: TextStyle(
                           fontSize: 18,
                         ),
-                        controller: _emailController,
                         validator: (value) => _validateEmail(value)
                       ),
                       SizedBox(height: 30),
@@ -111,7 +99,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontSize: 16,
                             color: Colors.grey[500]
                           ),
-
                         ),
                       ),
                       SizedBox(height: 10),
@@ -152,15 +139,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: TextStyle(
                           fontSize: 18,
                         ),
-                        controller: _passwordController,
                         validator: (value) => (value.isEmpty) ? "*Requerido" : null,
                       ),
                       SizedBox(height: 30),
                       GestureDetector(
-                        onTap: () async {
-                          if (_formKey.currentState.validate()) {
-                            
-                          }
+                        onTap: (){
+                          
                         },
                         child: Container(
                           height: 58,
@@ -195,13 +179,6 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
   }
 
   String _validateEmail(String email) { 

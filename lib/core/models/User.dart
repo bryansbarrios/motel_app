@@ -1,25 +1,31 @@
-class User {
-  String id;
+class UserData {
+  String uid;
   String fullName;
   String email;
   String password;
   DateTime createdAt;
 
-  User ({this.id, this.fullName, this.email, this.password, this.createdAt});
+  UserData ({this.uid, this.fullName, this.email, this.password, this.createdAt});
 
-  User.fromMap(Map data, String id):
-    id = id ?? '',
+  UserData.fromMap(Map data, String uid):
+    uid = uid ?? '',
     fullName = data ['fullname'] ?? '',
     email = data ['email'] ?? '',
-    password = data ['password'] ?? '',
     createdAt = data ['createdAt'] ?? '';
 
   toJson() {
     return {
+      "uid" : uid,
       "fullName": fullName,
       "email": email,
-      "password": password,
       "createdAt": createdAt
     };
   }
+}
+
+class User {
+
+  final String uid;
+  User({ this.uid });
+
 }

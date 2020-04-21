@@ -6,12 +6,19 @@ import 'package:motel_app/ui/screens/HomeScreen.dart';
 import 'package:motel_app/ui/screens/MapScreen.dart';
 
 class BottomNav extends StatefulWidget {
+  BottomNav({this.uid, this.fullName});
+  
+  final String uid;
+  final String fullName;
+
   @override
   _BottomNavState createState() => _BottomNavState();
 }
-
 class _BottomNavState extends State<BottomNav> {
   int _selectedIndex = 0;
+
+  get fullName => fullName;
+  get uid => uid;
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +86,7 @@ class _BottomNavState extends State<BottomNav> {
   Widget _screenChooser(int index) {
     switch (index) {
       case 0:
-        return HomeScreen();   
+        return HomeScreen(fullName: fullName, uid: uid,);   
         break;
       case 1:
         

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:motel_app/ui/shared/BottomNav.dart';
+import 'package:motel_app/core/viewmodels/UserViewModel.dart';
+import 'package:motel_app/ui/screens/NoLoginScreen.dart';
 import 'package:provider/provider.dart';
 import 'locator.dart';
 import './ui/Router.dart';
@@ -15,20 +16,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => MotelViewModel())
+        ChangeNotifierProvider(create: (_) => MotelViewModel()),
+        ChangeNotifierProvider(create: (_) => UserViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: '/noLogin',
         onGenerateRoute: Router.generateRoute,
+        home: NoLoginScreen(),
         theme: ThemeData(
           backgroundColor: Color.fromRGBO(245,250,255,1),
           hintColor: Color.fromRGBO(248,249,253,1),
-          textTheme: GoogleFonts.nunitoSansTextTheme(
+          textTheme: GoogleFonts.pTSansTextTheme(
             Theme.of(context).textTheme,
-          )
+          ),
         ),
-        home: BottomNav(),
       ),
     );
   }
