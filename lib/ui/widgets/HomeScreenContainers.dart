@@ -6,7 +6,7 @@ Widget createContainer (String title)
   {
     return Container(
       width: 360,
-      padding: EdgeInsets.fromLTRB(45.0, 20.0, 30.0, 0.0),
+      padding: EdgeInsets.fromLTRB(0.0, 20.0, 30.0, 0.0),
       child: 
       Align(
         alignment: Alignment.bottomLeft,
@@ -26,7 +26,7 @@ Widget createContainer (String title)
     {
       return Container(
         width: 360,
-        padding: EdgeInsets.fromLTRB(45.0, 20.0, 30.0, 0.0),
+        padding: EdgeInsets.fromLTRB(0.0, 20.0, 30.0, 0.0),
         child: 
         Align(
           alignment: Alignment.bottomLeft,
@@ -44,7 +44,7 @@ Widget createContainer (String title)
     {
       return Container(
         width: 360,
-        padding: EdgeInsets.fromLTRB(45.0, 20.0, 30.0, 0.0),
+        padding: EdgeInsets.fromLTRB(0.0, 20.0, 30.0, 0.0),
         child: Text(title, style: 
           TextStyle(
             fontSize: 20, fontFamily: 'Inter', 

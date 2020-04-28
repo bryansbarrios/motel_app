@@ -4,7 +4,7 @@ Widget createExpanded (String text, int opc){
 
   if(opc == 1){
     return Expanded(
-      flex: 10,
+      flex: 7,
       child: Text(text, textAlign: TextAlign.left, style: TextStyle(
       fontWeight: FontWeight.bold,
       fontSize: 16,
