@@ -18,67 +18,82 @@ class MotelList extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
           List<Motel> motels = snapshot.data;
-          int qty = motels.length;
-          print('Tiene $qty datos');
-          return ListView(
-            padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
-            shrinkWrap: true,
-            scrollDirection: Axis.vertical, 
-            children: <Widget>[ //motels.map((motel) => 
-                createContainer('Busca tu motel'),
-                createContainer('Moteles Populares'),
-                Expanded(
-                  child: motels.map((motel) => 
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 10.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      color: Colors.white,
-                      boxShadow: <BoxShadow>[
-                        BoxShadow(
-                          color: Colors.grey,
-                          blurRadius: 10.0,
-                        )
-                      ]
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20.0),
-                    child: Column(
-                      children: <Widget>[
-                        LimitedBox(
-                          maxHeight: 168,
-                          maxWidth: double.infinity,
-                          child: FadeInImage(
-                            image: NetworkImage(motel.photo),
-                            placeholder: AssetImage('assets/jar-loading.gif'),
-                            width: 400,
-                            fit: BoxFit.cover,
+          return Column(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.all(10),
+                child: Text("Título 1"),
+              ),
+              Container(
+                margin: EdgeInsets.all(10),
+                child: Text("Título 2"),
+              ),
+              Container(
+                margin: EdgeInsets.all(10),
+                child: Text("Título 3"),
+              ),
+              Expanded(
+                child: ListView(
+                  padding: EdgeInsets.all(10),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical, 
+                  children: motels.map((motel) => 
+                    Column(
+                      children: <Widget> [
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 10.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.0),
+                            color: Colors.white,
+                            boxShadow: <BoxShadow>[
+                              BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 10.0,
+                              )
+                            ]
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            child: Column(
+                              children: <Widget>[
+                                LimitedBox(
+                                  maxHeight: 168,
+                                  maxWidth: double.infinity,
+                                  child: FadeInImage(
+                                    image: NetworkImage(motel.photo),
+                                    placeholder: AssetImage('assets/jar-loading.gif'),
+                                    width: 400,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  child: Row(
+                                    children: <Widget>[
+                                    createExpanded(motel.motelName, 1),
+                                    createExpanded('5.0', 2),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  child: Row(
+                                    children: <Widget>[
+                                      createExpanded('Masaya', 3),
+                                      createExpanded(motel.price, 4),
+                                    ],
+                                  )
+                                )
+                              ],
+                            )
                           ),
                         ),
-                        Container(
-                          padding: EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 0.0),
-                          child: Row(
-                            children: <Widget>[
-                            createExpanded(motel.motelName, 1),
-                            createExpanded('5.0', 2),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.fromLTRB(8.0, 2.0, 8.0, 0.0),
-                          child: Row(
-                            children: <Widget>[
-                              createExpanded('Masaya', 3),
-                              createExpanded(motel.price, 4),
-                            ],
-                          )
-                        )
                       ],
                     )
-                  ),
-                )).toList()
-              ),
-            ]
+                  ).toList()
+                ),
+              )
+            ],
           );
         } 
         else {
