@@ -22,6 +22,7 @@ class _MapScreenState extends State<MapScreen> {
   String idMap = 'streets';
   LocationService locationServ = new LocationService();
   Ubicacion ubicacionUsuario;
+  Future<Ubicacion> ubicacionAhora; 
   
   //para medir las distancias
   Distance distancia = new Distance();
@@ -33,7 +34,7 @@ class _MapScreenState extends State<MapScreen> {
     super.initState();
 
     //al iniciar el app obtener la ubicacion del user y ponerlo en el objeto ubicacionUsuario
-    ponerUbicacion();
+    ubicacionAhora = ponerUbicacion();
         
   }
 
@@ -66,11 +67,13 @@ class _MapScreenState extends State<MapScreen> {
     return FutureBuilder(
         future: motelProvider.fetchMotels(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-           if (snapshot.hasData) {
+           if (snapshot.connectionState == ConnectionState.done) {
+
             List<Motel> motels = snapshot.data;
             _llenarListaDist(motels);
             print(snapshot.data);
             return _crearFlutterMapa(motels, context);
+
           } 
           else {
             return Center(child: CircularProgressIndicator());
@@ -84,19 +87,34 @@ class _MapScreenState extends State<MapScreen> {
   //Creamos el contenedor donde se añadirán el mapa y los marcadores
   Widget _crearFlutterMapa(List<Motel> data, BuildContext context) {
 
-    return FlutterMap(
-      mapController: mapController,
-      options: MapOptions(
-        center: LatLng(ubicacionUsuario.latitud, ubicacionUsuario.longitud),
-        zoom: 15.0,
-      ),
+    return FutureBuilder(
+      future : ubicacionAhora,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
 
-      layers: [
-        _crearMapa(),
-        _crearMarcadorUsuario(),
-        _crearMarcadores(data),
-      ],
-    ); 
+        if(snapshot.connectionState == ConnectionState.done) {
+          
+          ubicacionUsuario = snapshot.data;
+
+           return FlutterMap(
+            mapController: mapController,
+            options: MapOptions(
+              center: LatLng(ubicacionUsuario.latitud, ubicacionUsuario.longitud),
+              zoom: 15.0,
+            ),
+
+            layers: [
+              _crearMapa(),
+              _crearMarcadorUsuario(),
+              _crearMarcadores(data),
+            ],
+          );
+        } else {
+          return Center(child: CircularProgressIndicator());
+        }
+
+
+      });
+   
   }
 
   //Creamos el mapa y le especificamos el estilo que tendrá
@@ -200,11 +218,11 @@ class _MapScreenState extends State<MapScreen> {
        );
   }
 
-    void ponerUbicacion() async{
+    Future<Ubicacion> ponerUbicacion() async{
 
     Ubicacion ubicacion = await locationServ.getLocaton();
 
-    ubicacionUsuario = ubicacion;
+     return ubicacion;
 
   }
   //botón izquierfa
