@@ -11,20 +11,7 @@ class NoLoginScreen extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.all(30),
           children: <Widget>[
-            SizedBox(height: 20),
-            Align(
-              alignment: Alignment.topLeft,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/');
-                },
-                child: Icon (
-                  Icons.close,
-                  color: Color.fromRGBO(80,85,97,.5)
-                ),
-              ),
-            ),
-            SizedBox(height: 10),
+            SizedBox(height: 40),
             Container(
               child: Column(
                 children: <Widget>[

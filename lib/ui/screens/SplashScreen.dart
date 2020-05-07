@@ -9,7 +9,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-       child: Text("Hola"),
+       
     );
   }
 }

@@ -21,6 +21,10 @@ class Database {
     return reference.document(id).get();
   }
 
+  Future<void> addDocumentWithId(Map data, String id) {
+    reference.document(id).setData(data);
+  }
+
   Future<DocumentReference> addDocument(Map data) {
     return reference.add(data);
   }
@@ -32,5 +36,4 @@ class Database {
   Future<void> removeDocument(String id) {
     return reference.document(id).delete();
   }
-
 }

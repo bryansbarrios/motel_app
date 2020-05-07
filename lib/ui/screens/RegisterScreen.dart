@@ -5,6 +5,7 @@ import 'package:motel_app/core/viewmodels/UserViewModel.dart';
 import 'package:motel_app/ui/shared/LoginFooter.dart';
 import 'package:motel_app/ui/shared/LoginHeader.dart';
 import 'package:provider/provider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class RegisterScreen extends StatefulWidget {
 
@@ -207,7 +208,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           validator: (value) => _validatePassword(value),
                         ),
                         SizedBox(height: 30),
-                        GestureDetector(
+                        InkWell(
                           onTap: () async{
                             if (_formKey.currentState.validate()) {
                               setState(() => loading = true);
@@ -217,12 +218,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               } else {
                                 await userProvider.addUser(
                                   UserData(
-                                    uid: '2', 
+                                    uid: result, 
                                     fullName: _fullNameController.text, 
-                                    email: _emailController.text, 
-                                    createdAt: DateTime.now()
+                                    email: _emailController.text
                                   ),
+                                  result
                                 );
+                                Fluttertoast.showToast(
+                                  msg: "Cuenta creada exitosamente. Inicia sesión",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  textColor: Colors.black,
+                                  fontSize: 14.0
+                                );
+                                Navigator.popAndPushNamed(context, '/login');
                               }
                             }
                           },

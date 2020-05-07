@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:motel_app/core/models/Motel.dart';
+import 'package:motel_app/core/services/AuthService.dart';
 import 'package:motel_app/core/viewmodels/MotelViewModel.dart';
 import 'package:motel_app/ui/widgets/HomeScreenExpanded.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +10,6 @@ import 'HomeScreenContainers.dart';
 int acc = 0;
 
 class MotelList extends StatelessWidget {
- 
   @override
   Widget build(BuildContext context) {
     final motelProvider = Provider.of<MotelViewModel>(context);
@@ -20,18 +20,9 @@ class MotelList extends StatelessWidget {
           List<Motel> motels = snapshot.data;
           return Column(
             children: <Widget>[
-              Container(
-                margin: EdgeInsets.all(10),
-                child: Text("Título 1"),
-              ),
-              Container(
-                margin: EdgeInsets.all(10),
-                child: Text("Título 2"),
-              ),
-              Container(
-                margin: EdgeInsets.all(10),
-                child: Text("Título 3"),
-              ),
+              createContainer('Saludo e imagen', 'https://api.adorable.io/avatars/140/q@adorable.io.png', 'José'),
+              createContainer('Busca tu motel', null, null),
+              createContainer('Moteles populares', null, null),
               Expanded(
                 child: ListView(
                   padding: EdgeInsets.all(10),
@@ -47,8 +38,8 @@ class MotelList extends StatelessWidget {
                             color: Colors.white,
                             boxShadow: <BoxShadow>[
                               BoxShadow(
-                                color: Colors.grey,
-                                blurRadius: 10.0,
+                                color: Color.fromRGBO(0, 0, 0, .5),
+                                blurRadius: 4.0,
                               )
                             ]
                           ),
@@ -102,34 +93,4 @@ class MotelList extends StatelessWidget {
       }
     );
   }
-}
-
-Widget selectAndCreateContainer(int number, int qty) {
-  if(number == 0){
-    acc++;
-    print('El contador va en: $acc');
-    return createContainer('Busca tu motel');
-  }
-  else
-  {
-    if(number == 1){
-      acc++;
-      print('El contador va en: $acc');
-      return createContainer('Moteles Populares');
-    }
-    else
-    {
-      if(acc>qty)
-      {
-        print('El contador va en: $acc');
-        acc = 0;
-      }
-      else
-      {
-        acc++;
-        print('El contador va en: $acc');
-      }
-    }
-  }
-  return Row();
 }

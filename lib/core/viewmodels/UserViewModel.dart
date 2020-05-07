@@ -5,8 +5,8 @@ import 'package:motel_app/core/services/Database.dart';
 class UserViewModel extends ChangeNotifier {
   final Database _db = Database('user');
 
-  Future<void> addUser(UserData data) async {
-    await _db.addDocument(data.toJson());
+  Future<void> addUser(UserData data, String uid) async {
+    await _db.addDocumentWithId(data.toJson(), uid);
   }
 
   Future<UserData> getUserById(String id) async {

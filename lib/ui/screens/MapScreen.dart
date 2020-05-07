@@ -141,7 +141,7 @@ class _MapScreenState extends State<MapScreen> {
           height: 100.0,
           point: new LatLng( ubicacionUsuario.latitud, ubicacionUsuario.longitud ),
           builder: (context) =>  Container(
-            child: Icon(Icons.location_on, color: Colors.red,),
+            child: Icon(Icons.location_on, color: Colors.red, size: 30,),
 
           ),
          )
@@ -160,13 +160,14 @@ class _MapScreenState extends State<MapScreen> {
          point: new LatLng(motel.location.latitude, motel.location.longitude),
          builder: (context) =>  Container(
           
-           child: IconButton(
+          child: IconButton(
              icon: Icon(Icons.airline_seat_flat), 
              color: Colors.red,
+             iconSize: 30,
              onPressed: () {
                verInfoMotel(motel, context);
              },
-             ),
+          ),
            
          )
        ),

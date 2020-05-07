@@ -40,7 +40,7 @@ Widget createExpanded (String text, int opc){
       else{
         return Expanded(
           flex: 5,
-          child: Text('C\$'+text, textAlign: TextAlign.right, style: TextStyle(
+          child: Text(text, textAlign: TextAlign.right, style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 14,
           fontFamily: 'Inter',

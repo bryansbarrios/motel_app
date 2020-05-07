@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:motel_app/core/viewmodels/UserViewModel.dart';
+import 'package:motel_app/ui/screens/HomeScreen.dart';
 import 'package:motel_app/ui/screens/NoLoginScreen.dart';
+import 'package:motel_app/ui/shared/BottomNav.dart';
 import 'package:provider/provider.dart';
 import 'locator.dart';
 import './ui/Router.dart';

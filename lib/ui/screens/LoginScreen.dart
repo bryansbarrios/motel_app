@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:motel_app/ui/shared/LoginFooter.dart';
 import 'package:motel_app/ui/shared/LoginHeader.dart';
 
@@ -160,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         validator: (value) => (value.isEmpty) ? "*Requerido" : null,
                       ),
                       SizedBox(height: 30),
-                      GestureDetector(
+                      InkWell(
                         onTap: () async {
                           if (_formKey.currentState.validate()) {
                             _formKey.currentState.save();
@@ -170,7 +171,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             } else if (result == "There is no user record corresponding to this identifier. The user may have been deleted.") {
                               _key.currentState.showSnackBar(SnackBar(content: Text("Correo electrónico no registrado")));
                             } else {
-                              print("GO");
+                              Fluttertoast.showToast(
+                                msg: "Inicio sesión exitoso",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 1,
+                                textColor: Colors.black,
+                                fontSize: 14.0
+                              );
+                              Navigator.of(context).pushNamedAndRemoveUntil('/verified', (Route<dynamic> route) => false);
                             }
                           }
                         },

@@ -6,6 +6,7 @@ import 'package:motel_app/ui/screens/LoginScreen.dart';
 import 'package:motel_app/ui/screens/MapScreen.dart';
 import 'package:motel_app/ui/screens/NoLoginScreen.dart';
 import 'package:motel_app/ui/screens/RegisterScreen.dart';
+import 'package:motel_app/ui/shared/BottomNav.dart';
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -45,6 +46,11 @@ class Router {
           builder: (_) => RegisterScreen()
         );
       
+      case '/verified':
+        return MaterialPageRoute(
+          builder: (_) => BottomNav()
+        );
+
       default: 
         return MaterialPageRoute(
           builder: (_) => Scaffold(
