@@ -16,10 +16,6 @@ class BottomNav extends StatefulWidget {
 }
 class _BottomNavState extends State<BottomNav> {
   int _selectedIndex = 0;
-
-  get fullName => fullName;
-  get uid => uid;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,7 +82,7 @@ class _BottomNavState extends State<BottomNav> {
   Widget _screenChooser(int index) {
     switch (index) {
       case 0:
-        return HomeScreen(fullName: fullName, uid: uid,);   
+        return HomeScreen();   
         break;
       case 1:
         

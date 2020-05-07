@@ -1,25 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:motel_app/ui/widgets/MotelList.dart';
 
-class HomeScreen extends StatefulWidget {
-  HomeScreen({this.uid, this.fullName});
-  
-  final String uid;
-  final String fullName;
-
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  String get fullName => fullName;
-
+class HomeScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      body: Container(
-        child: Center(child: Text(fullName),),
-      )
+      body: MotelList(), 
     );
   }
 }
