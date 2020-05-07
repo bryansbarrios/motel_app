@@ -1,8 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:motel_app/core/services/AuthService.dart';
-import 'package:motel_app/ui/screens/NoLoginScreen.dart';
-import 'package:motel_app/ui/shared/BottomNav.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -31,17 +28,16 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
       height: double.infinity,
       width: double.infinity,
-      child: Center(child: CircularProgressIndicator(),)
     );
   }
 
   void verifyLogin() async {
     var response = await _auth.getCurrentUser();
     if (response != null) {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BottomNav()),);
+      Navigator.pushReplacementNamed(context, '/verified');
     }
     else {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => NoLoginScreen()),);
+      Navigator.pushNamed(context, '/noLogin');
     }
   }
 }

@@ -208,14 +208,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           validator: (value) => _validatePassword(value),
                         ),
                         SizedBox(height: 30),
-                        InkWell(
+                        !loading ? InkWell(
                           onTap: () async{
                             if (_formKey.currentState.validate()) {
                               setState(() => loading = true);
                               dynamic result = await _auth.registerWithEmailAndPassword(_emailController.text, _passwordController.text);
                               if (result == "The email address is already in use by another account.") {
                                 _key.currentState.showSnackBar(SnackBar(content: Text("Correo electrónico en uso")));
-                              } else {
+                                setState(() => loading = false);
+                              } 
+                              else {
                                 await userProvider.addUser(
                                   UserData(
                                     uid: result, 
@@ -257,7 +259,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               )
                             ),
                           ),
-                        ),
+                        ) : showLoading(),
                       SizedBox(height: 30),
                       LoginFooter('¿Ya tienes una cuenta?', 'Inicia sesión', '/login')
                     ],
@@ -268,6 +270,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
         ),
       )
+    );
+  }
+
+  Widget showLoading() {
+    return Center(
+      child: CircularProgressIndicator(),
     );
   }
 

@@ -17,6 +17,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final AuthService _auth = AuthService();
 
+  bool loading = false;
+
   TextEditingController _emailController;
   TextEditingController _passwordController;
 
@@ -161,15 +163,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         validator: (value) => (value.isEmpty) ? "*Requerido" : null,
                       ),
                       SizedBox(height: 30),
-                      InkWell(
+                      !loading ? InkWell(
                         onTap: () async {
                           if (_formKey.currentState.validate()) {
+                            setState(() => loading = true);
                             _formKey.currentState.save();
                             dynamic result = await _auth.signInWithEmailAndPassword(_emailController.text, _passwordController.text);
                             if (result == "The password is invalid or the user does not have a password.") {
                               _key.currentState.showSnackBar(SnackBar(content: Text("Correo electrónico o contraseña incorrecta")));
+                              setState(() => loading = false);
                             } else if (result == "There is no user record corresponding to this identifier. The user may have been deleted.") {
                               _key.currentState.showSnackBar(SnackBar(content: Text("Correo electrónico no registrado")));
+                              setState(() => loading = false);
                             } else {
                               Fluttertoast.showToast(
                                 msg: "Inicio sesión exitoso",
@@ -204,7 +209,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ) 
                           ),
                         ),
-                      ),
+                      ) : showLoading(),
                       SizedBox(height: 30),
                       LoginFooter('¿Aún no tienes una cuenta?', 'Regístrate', '/register')
                     ],
@@ -215,6 +220,12 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget showLoading() {
+    return Center(
+      child: CircularProgressIndicator(),
     );
   }
 
