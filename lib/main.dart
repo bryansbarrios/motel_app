@@ -25,12 +25,8 @@ class MyApp extends StatelessWidget {
         home: NoLoginScreen(),
         theme: ThemeData(
           backgroundColor: Color.fromRGBO(245,250,255,1),
-<<<<<<< HEAD
-          textTheme: GoogleFonts.poppinsTextTheme(
-=======
           hintColor: Color.fromRGBO(248,249,253,1),
           textTheme: GoogleFonts.pTSansTextTheme(
->>>>>>> origin/feature/auth
             Theme.of(context).textTheme,
           ),
         ),
