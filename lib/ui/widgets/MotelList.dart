@@ -20,18 +20,9 @@ class MotelList extends StatelessWidget {
           List<Motel> motels = snapshot.data;
           return Column(
             children: <Widget>[
-              Container(
-                margin: EdgeInsets.all(10),
-                child: Text("Título 1"),
-              ),
-              Container(
-                margin: EdgeInsets.all(10),
-                child: Text("Título 2"),
-              ),
-              Container(
-                margin: EdgeInsets.all(10),
-                child: Text("Título 3"),
-              ),
+              createContainer('Saludo e imagen', 'https://pickaface.net/gallery/avatar/unr_random_160817_0304_2mvqp69.png', 'José'),
+              createContainer('Busca tu motel', null, null),
+              createContainer('Moteles populares', null, null),
               Expanded(
                 child: ListView(
                   padding: EdgeInsets.all(10),
@@ -102,34 +93,4 @@ class MotelList extends StatelessWidget {
       }
     );
   }
-}
-
-Widget selectAndCreateContainer(int number, int qty) {
-  if(number == 0){
-    acc++;
-    print('El contador va en: $acc');
-    return createContainer('Busca tu motel');
-  }
-  else
-  {
-    if(number == 1){
-      acc++;
-      print('El contador va en: $acc');
-      return createContainer('Moteles Populares');
-    }
-    else
-    {
-      if(acc>qty)
-      {
-        print('El contador va en: $acc');
-        acc = 0;
-      }
-      else
-      {
-        acc++;
-        print('El contador va en: $acc');
-      }
-    }
-  }
-  return Row();
 }
