@@ -65,25 +65,22 @@ class _MapScreenState extends State<MapScreen> {
     final motelProvider = Provider.of<MotelViewModel>(context);
 
     return FutureBuilder(
-        future: motelProvider.fetchMotels(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-           if (snapshot.connectionState == ConnectionState.done) {
+      future: motelProvider.fetchMotels(),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
 
-            List<Motel> motels = snapshot.data;
-            _llenarListaDist(motels);
-            print(snapshot.data);
-            return _crearFlutterMapa(motels, context);
+          List<Motel> motels = snapshot.data;
+          _llenarListaDist(motels);
+          print(snapshot.data);
+          return _crearFlutterMapa(motels, context);
 
-          } 
-          else {
-            return Center(child: CircularProgressIndicator());
-          } 
-        },    
+        } 
+        return Center(child: CircularProgressIndicator());
+      },    
     );
 
   }
-
-
+  
   //Creamos el contenedor donde se añadirán el mapa y los marcadores
   Widget _crearFlutterMapa(List<Motel> data, BuildContext context) {
 
@@ -160,14 +157,14 @@ class _MapScreenState extends State<MapScreen> {
          point: new LatLng(motel.location.latitude, motel.location.longitude),
          builder: (context) =>  Container(
           
-          child: IconButton(
+           child: IconButton(
              icon: Icon(Icons.airline_seat_flat), 
              color: Colors.red,
              iconSize: 30,
              onPressed: () {
                verInfoMotel(motel, context);
              },
-          ),
+             ),
            
          )
        ),

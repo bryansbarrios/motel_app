@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:motel_app/core/models/Motel.dart';
 import 'package:motel_app/core/services/AuthService.dart';
@@ -9,7 +10,21 @@ import 'HomeScreenContainers.dart';
 
 int acc = 0;
 
-class MotelList extends StatelessWidget {
+class MotelList extends StatefulWidget {
+  @override
+  _MotelListState createState() => _MotelListState();
+}
+
+class _MotelListState extends State<MotelList> {
+  final AuthService _auth = AuthService();
+  String email = "";
+
+  @override
+  void initState() { 
+    super.initState();
+    getEmail();
+  }
+
   @override
   Widget build(BuildContext context) {
     final motelProvider = Provider.of<MotelViewModel>(context);
@@ -20,7 +35,8 @@ class MotelList extends StatelessWidget {
           List<Motel> motels = snapshot.data;
           return Column(
             children: <Widget>[
-              createContainer('Saludo e imagen', 'https://api.adorable.io/avatars/140/q@adorable.io.png', 'José'),
+              SizedBox(height: 50,),
+              createContainer('Saludo e imagen', 'https://source.unsplash.com/random/200x200', email),
               createContainer('Busca tu motel', null, null),
               createContainer('Moteles populares', null, null),
               Expanded(
@@ -38,8 +54,8 @@ class MotelList extends StatelessWidget {
                             color: Colors.white,
                             boxShadow: <BoxShadow>[
                               BoxShadow(
-                                color: Color.fromRGBO(0, 0, 0, .5),
-                                blurRadius: 4.0,
+                                color: Color.fromRGBO(0, 0, 0, .4),
+                                blurRadius: 4,
                               )
                             ]
                           ),
@@ -52,7 +68,7 @@ class MotelList extends StatelessWidget {
                                   maxWidth: double.infinity,
                                   child: FadeInImage(
                                     image: NetworkImage(motel.photo),
-                                    placeholder: AssetImage('assets/jar-loading.gif'),
+                                    placeholder: AssetImage('assets/loading.gif'),
                                     width: 400,
                                     fit: BoxFit.cover,
                                   ),
@@ -92,5 +108,12 @@ class MotelList extends StatelessWidget {
         } 
       }
     );
+  }
+
+  void getEmail() async {
+    final FirebaseUser user = await _auth.getCurrentUser();
+    setState(() {
+      email = user.email;
+    }); // here you write the codes to input the data into firestore
   }
 }

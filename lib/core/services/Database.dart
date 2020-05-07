@@ -22,7 +22,7 @@ class Database {
   }
 
   Future<void> addDocumentWithId(Map data, String id) {
-    reference.document(id).setData(data);
+    return reference.document(id).setData(data);
   }
 
   Future<DocumentReference> addDocument(Map data) {

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:location/location.dart';
-import 'package:latlong/latlong.dart';
 
 import 'package:motel_app/core/models/Ubicacion.dart';
 
