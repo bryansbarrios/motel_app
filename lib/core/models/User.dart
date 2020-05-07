@@ -3,22 +3,19 @@ class UserData {
   String fullName;
   String email;
   String password;
-  DateTime createdAt;
 
-  UserData ({this.uid, this.fullName, this.email, this.password, this.createdAt});
+  UserData ({this.uid, this.fullName, this.email, this.password});
 
   UserData.fromMap(Map data, String uid):
     uid = uid ?? '',
     fullName = data ['fullname'] ?? '',
-    email = data ['email'] ?? '',
-    createdAt = data ['createdAt'] ?? '';
+    email = data ['email'] ?? '';
 
   toJson() {
     return {
       "uid" : uid,
       "fullName": fullName,
-      "email": email,
-      "createdAt": createdAt
+      "email": email
     };
   }
 }

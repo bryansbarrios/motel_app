@@ -86,7 +86,7 @@ class _BottomNavState extends State<BottomNav> {
   Widget _screenChooser(int index) {
     switch (index) {
       case 0:
-        return HomeScreen(fullName: fullName, uid: uid,);   
+        return HomeScreen();   
         break;
       case 1:
         

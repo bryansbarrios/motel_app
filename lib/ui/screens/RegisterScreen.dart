@@ -217,11 +217,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               } else {
                                 await userProvider.addUser(
                                   UserData(
-                                    uid: '2', 
+                                    uid: result, 
                                     fullName: _fullNameController.text, 
-                                    email: _emailController.text, 
-                                    createdAt: DateTime.now()
+                                    email: _emailController.text
                                   ),
+                                  result
                                 );
                               }
                             }

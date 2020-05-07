@@ -170,7 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             } else if (result == "There is no user record corresponding to this identifier. The user may have been deleted.") {
                               _key.currentState.showSnackBar(SnackBar(content: Text("Correo electrónico no registrado")));
                             } else {
-                              print("GO");
+                              Navigator.popAndPushNamed(context, '/homeScreen');
                             }
                           }
                         },

@@ -21,6 +21,10 @@ class Database {
     return reference.document(id).get();
   }
 
+  Future<DocumentReference> addDocumentWithId(Map data, String id) {
+    return reference.document(id).setData(data);
+  }
+
   Future<DocumentReference> addDocument(Map data) {
     return reference.add(data);
   }
