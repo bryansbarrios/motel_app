@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         onGenerateRoute: Router.generateRoute,
-        home: NoLoginScreen(),
+        home: SplashScreen(),
         theme: ThemeData(
           backgroundColor: Color.fromRGBO(245,250,255,1),
           hintColor: Color.fromRGBO(248,249,253,1),

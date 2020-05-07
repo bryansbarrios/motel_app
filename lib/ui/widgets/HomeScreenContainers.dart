@@ -75,7 +75,7 @@ Widget createContainer (String title, String image, String name) {
                           textColor: Colors.black,
                           fontSize: 14.0
                         );
-                        Navigator.of(context).pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
+                        Navigator.of(context).pushNamedAndRemoveUntil('/noLogin', (Route<dynamic> route) => false);
                       }
                     },
                   ),
