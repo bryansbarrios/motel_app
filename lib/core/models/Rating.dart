@@ -12,11 +12,11 @@ class Rating {
     userId = data ['userId'] ?? '',
     rating = data ['rating'] ?? 0.0;
   
-    toJson() {
-      return {
-        "motelId": motelId,
-        "userId": userId,
-        "rating": rating
-      };
-    }
+  toJson() {
+    return {
+      "motelId": motelId,
+      "userId": userId,
+      "rating": rating
+    };
+  }
 }

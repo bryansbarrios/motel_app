@@ -1,32 +1,31 @@
-class User {
-  String id;
+class UserData {
+  String uid;
   String fullName;
   String email;
   String password;
   DateTime createdAt;
 
-  // Constructor
-  User ({this.id, this.fullName, this.email, this.password, this.createdAt});
+  UserData ({this.uid, this.fullName, this.email, this.password, this.createdAt});
 
-  /*
-    -- Constructor nombrado
-    User.fromMap (Map snapshot, String id): cuando se obtienen datos de Firebase, está en formato JSON. Este método nos permite asignar datos del formato JSON a nuestro formato de Producto.
-  */
-
-  User.fromMap(Map data, String id):
-    id = id ?? '',
+  UserData.fromMap(Map data, String uid):
+    uid = uid ?? '',
     fullName = data ['fullname'] ?? '',
     email = data ['email'] ?? '',
-    password = data ['password'] ?? '',
     createdAt = data ['createdAt'] ?? '';
 
-  // toJson() hace lo contrario a fromMap() que es asignar los datos nuevamente en formato JSON antes de cargarlos en Firebase.
   toJson() {
     return {
+      "uid" : uid,
       "fullName": fullName,
       "email": email,
-      "password": password,
       "createdAt": createdAt
     };
   }
+}
+
+class User {
+
+  final String uid;
+  User({ this.uid });
+
 }

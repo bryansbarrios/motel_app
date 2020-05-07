@@ -10,10 +10,10 @@ class FavoriteMotel {
     motelId = data  ['motelId'] ?? '',
     userId = data  ['userId'] ?? '';
 
-    toJson() {
-      return {
-        "motelId": motelId,
-        "userId": userId
-      };
-    }
+  toJson() {
+    return {
+      "motelId": motelId,
+      "userId": userId
+    };
+  }
 }

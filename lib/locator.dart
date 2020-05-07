@@ -7,6 +7,7 @@ GetIt locator = GetIt.instance;
 void setupLocator() {
   locator.registerLazySingleton(() => MotelViewModel());
   locator.registerLazySingleton(() => FavoriteViewModel());
+  locator.registerLazySingleton(() => UserViewModel());
   locator.registerLazySingleton(() => MotelTypeViewModel());
   locator.registerLazySingleton(() => RatingViewModel());
 }
