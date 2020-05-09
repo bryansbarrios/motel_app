@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 import 'package:motel_app/core/models/Ubicacion.dart';
 import 'package:motel_app/core/services/location_service.dart';
+import 'package:motel_app/icons/icons_motel_icons.dart';
 import 'package:provider/provider.dart';
 
 import 'package:motel_app/core/viewmodels/MotelViewModel.dart';
@@ -151,16 +152,15 @@ class _MapScreenState extends State<MapScreen> {
      return MarkerLayerOptions(
 
        markers: data.map((motel) => Marker(
-        
+
          width: 100.0,
          height: 100.0,
          point: new LatLng(motel.location.latitude, motel.location.longitude),
+         
          builder: (context) =>  Container(
-          
            child: IconButton(
-             icon: Icon(Icons.airline_seat_flat), 
-             color: Colors.red,
-             iconSize: 30,
+             icon: agregarIcono(motel.typeId), 
+             color: agregarColor(motel.typeId),
              onPressed: () {
                verInfoMotel(motel, context);
              },
@@ -171,6 +171,73 @@ class _MapScreenState extends State<MapScreen> {
             
       ).toList(),
      );
+  }
+
+  Icon agregarIcono (String idIcono) {
+    //en dependencia del id del tipo retorna un tipo de icono
+    idIcono = idIcono.replaceAll(" ", "");
+    
+    switch (idIcono) {
+
+      case "2bPekbxw39uodioQMDA4" :
+        return Icon(
+          IconsMotel.automotel_icon
+        );
+        break;
+
+      case "KLrSvMIukdWqiT5kw1if" :
+        return Icon(
+          IconsMotel.motel_icon
+        );
+        break;
+
+      case "tWMYlPIqW7MmfWuk5qm9" :
+        return Icon(
+          IconsMotel.hotel_icon
+        );
+        break;
+      
+      case "wVhv7qU3ao2mu2wWYJMw" :
+        return Icon(
+          IconsMotel.automotel_icon
+        );
+        break;
+
+      default: 
+        return Icon(
+          Icons.airline_seat_flat
+        );
+    }
+  }
+
+  
+  Color agregarColor (String idIcono) {
+    //en dependencia del id del tipo retorna un tipo de icono
+    idIcono = idIcono.replaceAll(" ", "");
+    
+    switch (idIcono) {
+
+      case "2bPekbxw39uodioQMDA4" :
+        return Color.fromARGB(255, 152, 24, 214);
+        break;
+
+      case "KLrSvMIukdWqiT5kw1if" :
+        return Color.fromARGB(255, 255, 81, 81);
+        break;
+
+      case "tWMYlPIqW7MmfWuk5qm9" :
+        return Color.fromARGB(255, 255, 164, 27);
+        break;
+      
+      case "wVhv7qU3ao2mu2wWYJMw" :
+        return Color.fromARGB(255, 152, 24, 214);
+        break;
+
+      default: 
+        return Colors.red;
+
+        break;
+    }
   }
 
 

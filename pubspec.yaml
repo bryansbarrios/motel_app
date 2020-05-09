@@ -78,6 +78,7 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+
   # fonts:
   #  - family: Inter
   #    fonts:
@@ -88,6 +89,14 @@ flutter:
   #      - asset: assets/fonts/Inter/Inter-SemiBold.ttf
   #      - asset: assets/fonts/Inter/Inter-Bold.ttf
   #      - asset: assets/fonts/Inter/Inter-Black.ttf
+
+  fonts:
+   - family: IconsMotel
+     fonts:
+        - asset: icons/IconsMotel.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
