@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:motel_app/core/services/SearchService.dart';
-import 'package:motel_app/ui/widgets/MotelList.dart';
+import 'package:motel_app/ui/screens/MotelDetailScreen.dart';
 
 class Search extends StatefulWidget {
   
@@ -54,7 +54,7 @@ class _SearchState extends State<Search> {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-          title: Text('Firestore search'),
+          title: Text('Búsqueda de Moteles'),
         ),
         body: ListView(children: <Widget>[
           Padding(
@@ -66,11 +66,9 @@ class _SearchState extends State<Search> {
               decoration: InputDecoration(
                   prefixIcon: IconButton(
                     color: Colors.black,
-                    icon: Icon(Icons.arrow_back),
+                    icon: Icon(Icons.search),
                     iconSize: 20.0,
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
+                    
                   ),
                   contentPadding: EdgeInsets.only(left: 25.0),
                   hintText: 'Search by name',
@@ -79,6 +77,7 @@ class _SearchState extends State<Search> {
             ),
           ),
           SizedBox(height: 10.0),
+          
           GridView.count(
               padding: EdgeInsets.only(left: 10.0, right: 10.0),
               crossAxisCount: 2,
@@ -86,7 +85,6 @@ class _SearchState extends State<Search> {
               mainAxisSpacing: 4.0,
               primary: false,
               shrinkWrap: true,
-              
               children: tempSearchStore.map((element) {
                 return buildResultCard(element);
               }).toList())
@@ -123,14 +121,13 @@ Widget buildResultCard(data) {
           location:data['location'],
           photo: data['photo'],
           price:data['price'],
-          type: data['type'],
+          //type: data['type'],
          )));
          
     }
     
     );
   
-   ;
 
 }
 
