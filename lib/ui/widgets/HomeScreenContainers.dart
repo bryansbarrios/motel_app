@@ -53,8 +53,10 @@ Widget createContainer (String title, String image, String name) {
           PopupMenuButton<String>(
             child: Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 25, 0),
-                child: Tab(
-                  icon: new Image.network(image),
+                child: CircleAvatar(
+                    radius: 25.0,
+                    backgroundImage: NetworkImage(image), 
+                    backgroundColor: Colors.transparent
                 )
               ),
             padding: EdgeInsets.fromLTRB(50.0, 0.0, 0.0, 0.0),
