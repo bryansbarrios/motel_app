@@ -96,20 +96,42 @@ class _SearchState extends State<Search> {
 
 Widget buildResultCard(data) {
   
-  return Card(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-    elevation: 2.0,
-    child: Container(
-      child: Center(
-        child: Text(data['motelName'],
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 20.0,
-        ),
+  return GestureDetector(
+    child:  Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      elevation: 2.0,
+      child: Container(
+        child: Center(
+          child: Text(data['motelName'],
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 20.0,
+          ),
+          )
         )
       )
-    )
-  );
+    ),
+    onTap: () {
+      //esto mueve a la page de detalle, da error mientras no esté la page de detalle
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MotelDetailScreen(
+          motelName: data['motelName'],
+          description: data['description'],
+          address: data['address'],
+          location:data['location'],
+          photo: data['photo'],
+          price:data['price'],
+          type: data['type'],
+         )));
+         
+    }
+    
+    );
+  
+   ;
+
+}
 
 }
