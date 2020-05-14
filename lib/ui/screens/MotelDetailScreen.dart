@@ -25,7 +25,6 @@ class MotelDetailScreen extends StatefulWidget{
 }
 
 class _MotelDetailScreenState extends State<MotelDetailScreen> {
-  String type;
   
   @override
   Widget build(BuildContext context) {

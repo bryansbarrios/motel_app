@@ -10,7 +10,7 @@ class Tag extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color.fromRGBO(240,255,255, 1),
+        color: Color.fromRGBO(245,255,255, 1),
         borderRadius: BorderRadius.all(Radius.circular(50))
       ),
       child: Padding(
