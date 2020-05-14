@@ -3,17 +3,13 @@ import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:motel_app/core/models/Motel.dart';
-import 'package:motel_app/core/models/MotelType.dart';
 import 'package:motel_app/core/models/User.dart';
 import 'package:motel_app/core/services/AuthService.dart';
-import 'package:motel_app/core/viewmodels/MotelTypeViewModel.dart';
 import 'package:motel_app/core/viewmodels/MotelViewModel.dart';
 import 'package:motel_app/core/viewmodels/UserViewModel.dart';
 import 'package:motel_app/ui/screens/MotelDetailScreen.dart';
-import 'package:motel_app/ui/widgets/HomeScreenExpanded.dart';
+import 'package:motel_app/ui/widgets/HeroContainer.dart';
 import 'package:provider/provider.dart';
-
-import 'HomeScreenContainers.dart';
 import 'MotelCard.dart';
 
 // int acc = 0;
@@ -47,25 +43,25 @@ class _MotelListState extends State<MotelList> {
           List<Motel> motels = snapshot.data;
           return Column(
             children: <Widget>[
-              SizedBox(height: 50,),
+              //SizedBox(height: 50,),
               FutureBuilder(
                 future: userProvider.getUserById(uid),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
                     UserData user = snapshot.data;
                     print("Nombre: ${user.fullName}");
-                    return createContainer('Saludo e imagen', 'https://source.unsplash.com/random/200x200', user.fullName);
+                    return HeroContainer(fullName: user.fullName); //createContainer('Saludo e imagen', 'https://source.unsplash.com/random/200x200', user.fullName);
                   }
                   return Padding(
-                    padding: EdgeInsets.all(20),
+                    padding: EdgeInsets.all(0),
                     child: Center(
                         child: CircularProgressIndicator(),
                     ),
                   );
                 },
               ),
-              createContainer('Busca tu motel', null, null),
-              createContainer('Moteles populares', null, null),
+              //createContainer('Busca tu motel', null, null),
+              //createContainer('Moteles populares', null, null),
               Expanded(
                 child: ListView(
                   padding: EdgeInsets.all(15),

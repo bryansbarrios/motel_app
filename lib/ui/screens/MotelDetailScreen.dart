@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:motel_app/core/models/MotelType.dart';
 import 'package:motel_app/core/viewmodels/MotelTypeViewModel.dart';
