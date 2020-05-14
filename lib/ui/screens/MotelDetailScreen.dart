@@ -89,48 +89,67 @@ class _MotelDetailScreenState extends State<MotelDetailScreen> {
                         Card(
                           margin: EdgeInsets.symmetric(vertical: 6),
                           elevation: 1,
-                          child: ListTile(
-                            leading: Icon(LineIcons.hotel),
-                            title: Text('Nombre de ${businessType.type}', style: TextStyle(fontSize: 14),),
-                            subtitle: Text(widget.motelName, style: TextStyle(fontSize: 16)),
+                          child: Padding(
+                            padding: EdgeInsets.all(10),  
+                            child: ListTile(
+                              leading: Icon(LineIcons.hotel),
+                              title: Text('Nombre de ${businessType.type}', style: TextStyle(fontSize: 14),),
+                              subtitle: Text(widget.motelName, style: TextStyle(fontSize: 16)),
+                            ),
                           ),
                         ),
                         Card(
                           margin: EdgeInsets.symmetric(vertical: 6),
                           elevation: 1,
-                          child: ListTile(
-                            leading: Icon(LineIcons.file_text),
-                            title: Text('Descripción', style: TextStyle(fontSize: 14),),
-                            subtitle: Text(widget.description, style: TextStyle(fontSize: 16)),
-                            isThreeLine: true,
+                          child: Padding(
+                            padding: EdgeInsets.all(10),
+                            child: ListTile(
+                              leading: Icon(LineIcons.file_text),
+                              title: Text('Descripción', style: TextStyle(fontSize: 14),),
+                              subtitle: Text(widget.description, style: TextStyle(fontSize: 16)),
+                            ),
                           ),
                         ),
                         Card(
                           margin: EdgeInsets.symmetric(vertical: 6),
                           elevation: 1,
-                          child: ListTile(
-                            leading: Icon(LineIcons.location_arrow),
-                            title: Text('Dirección', style: TextStyle(fontSize: 14),),
-                            subtitle: Text(widget.address, style: TextStyle(fontSize: 16)),
-                            isThreeLine: true,
+                          child: Padding(
+                            padding: EdgeInsets.all(10),
+                            child: ListTile(
+                              leading: Icon(LineIcons.location_arrow),
+                              title: Text('Dirección', style: TextStyle(fontSize: 14),),
+                              subtitle: Text(widget.address, style: TextStyle(fontSize: 16)),
+                            ),
                           ),
                         ),
                         Card(
                           margin: EdgeInsets.symmetric(vertical: 6),
                           elevation: 1,
-                          child: ListTile(
-                            leading: Icon(Icons.map),
-                            title: Text('Coordenadas', style: TextStyle(fontSize: 14),),
-                            subtitle: Text("Latitud: ${widget.location.latitude.toString()}\nLongitud: ${widget.location.longitude.toString()}", style: TextStyle(fontSize: 16)),
+                          child: Padding(
+                            padding: EdgeInsets.all(10),
+                            child: ListTile(
+                              leading: Icon(Icons.map),
+                              title: Text('Coordenadas', style: TextStyle(fontSize: 14),),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text("Latitud: ${widget.location.latitude.toString()}", style: TextStyle(fontSize: 16)),
+                                  Text("Longitud: ${widget.location.longitude.toString()}", style: TextStyle(fontSize: 16))
+                                ],
+                              )
+                            ),
                           ),
                         ),
                         Card(
                           margin: EdgeInsets.symmetric(vertical: 6),
                           elevation: 1,
-                          child: ListTile(
-                            leading: Icon(Icons.monetization_on),
-                            title: Text('Precio', style: TextStyle(fontSize: 14),),
-                            subtitle: Text(widget.price, style: TextStyle(fontSize: 16)),
+                          child: Padding(
+                            padding: EdgeInsets.all(10),
+                            child: ListTile(
+                              leading: Icon(Icons.monetization_on),
+                              title: Text('Precio', style: TextStyle(fontSize: 14),),
+                              subtitle: Text(widget.price, style: TextStyle(fontSize: 16)),
+                            ),
                           ),
                         ),
                       ],
