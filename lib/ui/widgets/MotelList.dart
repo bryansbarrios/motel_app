@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:motel_app/core/models/Motel.dart';
 import 'package:motel_app/core/services/AuthService.dart';
 import 'package:motel_app/core/viewmodels/MotelViewModel.dart';
+import 'package:motel_app/ui/screens/MotelDetailScreen.dart';
 import 'package:motel_app/ui/widgets/HomeScreenExpanded.dart';
 import 'package:provider/provider.dart';
 
@@ -47,52 +48,67 @@ class _MotelListState extends State<MotelList> {
                   children: motels.map((motel) => 
                     Column(
                       children: <Widget> [
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 10.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20.0),
-                            color: Colors.white,
-                            boxShadow: <BoxShadow>[
-                              BoxShadow(
-                                color: Color.fromRGBO(0, 0, 0, .4),
-                                blurRadius: 4,
-                              )
-                            ]
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20.0),
-                            child: Column(
-                              children: <Widget>[
-                                LimitedBox(
-                                  maxHeight: 168,
-                                  maxWidth: double.infinity,
-                                  child: FadeInImage(
-                                    image: NetworkImage(motel.photo),
-                                    placeholder: AssetImage('assets/loading.gif'),
-                                    width: 400,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.all(10),
-                                  child: Row(
-                                    children: <Widget>[
-                                    createExpanded(motel.motelName, 1),
-                                    createExpanded('5.0', 2),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.all(10),
-                                  child: Row(
-                                    children: <Widget>[
-                                      createExpanded('Masaya', 3),
-                                      createExpanded(motel.price, 4),
-                                    ],
-                                  )
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => MotelDetailScreen(
+                                motelName: motel.motelName,
+                                description: motel.description,
+                                address: motel.address,
+                                location: motel.location,
+                                photo: motel.photo,
+                                price: motel.price
+                              )),
+                            );
+                          },
+                          child: Container(
+                            margin: EdgeInsets.symmetric(vertical: 10.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20.0),
+                              color: Colors.white,
+                              boxShadow: <BoxShadow>[
+                                BoxShadow(
+                                  color: Color.fromRGBO(0, 0, 0, .4),
+                                  blurRadius: 4,
                                 )
-                              ],
-                            )
+                              ]
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20.0),
+                              child: Column(
+                                children: <Widget>[
+                                  LimitedBox(
+                                    maxHeight: 168,
+                                    maxWidth: double.infinity,
+                                    child: FadeInImage(
+                                      image: NetworkImage(motel.photo),
+                                      placeholder: AssetImage('assets/loading.gif'),
+                                      width: 400,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.all(10),
+                                    child: Row(
+                                      children: <Widget>[
+                                      createExpanded(motel.motelName, 1),
+                                      createExpanded('5.0', 2),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.all(10),
+                                    child: Row(
+                                      children: <Widget>[
+                                        createExpanded('Masaya', 3),
+                                        createExpanded(motel.price, 4),
+                                      ],
+                                    )
+                                  )
+                                ],
+                              )
+                            ),
                           ),
                         ),
                       ],

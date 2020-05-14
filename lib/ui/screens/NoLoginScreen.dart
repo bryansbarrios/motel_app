@@ -27,7 +27,7 @@ class NoLoginScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    'Inicia sesión o regístrate para calificar y guardar tus moteles favoritos.', 
+                    'Inicia sesión o regístrate para visualizar los moteles registrados', 
                     textAlign: TextAlign.center, 
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
