@@ -4,6 +4,8 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:motel_app/ui/screens/FavoriteMotelsScreen.dart';
 import 'package:motel_app/ui/screens/HomeScreen.dart';
 import 'package:motel_app/ui/screens/MapScreen.dart';
+import 'package:motel_app/ui/screens/SearchScreen.dart';
+
 
 class BottomNav extends StatefulWidget {
   BottomNav({this.uid, this.fullName});
@@ -50,14 +52,14 @@ class _BottomNavState extends State<BottomNav> {
                     iconActiveColor: Color.fromRGBO(0,168,107,1),
                     backgroundColor: Color.fromRGBO(246,254,246,1),
                   ),
-                  GButton(
+                  /*GButton(
                     icon: LineIcons.heart_o,
                     iconColor: Colors.grey[400],
                     text: 'Favoritos',
                     textColor: Color.fromRGBO(178,34,34,1),
                     iconActiveColor: Color.fromRGBO(178,34,34,1),
                     backgroundColor: Color.fromRGBO(253,210,226,1),
-                  ),
+                  ),*/
                   GButton(
                     icon: LineIcons.map,
                     iconColor: Colors.grey[400],
@@ -85,12 +87,9 @@ class _BottomNavState extends State<BottomNav> {
         return HomeScreen();   
         break;
       case 1:
-        
+        return Search();
         break;
       case 2:
-        return FavoriteMotelsScreen();   
-        break;
-      case 3:
         return MapScreen(); 
         break;  
     }
