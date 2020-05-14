@@ -40,7 +40,6 @@ class _MotelListState extends State<MotelList> {
   Widget build(BuildContext context) {
     final motelProvider = Provider.of<MotelViewModel>(context);
     final userProvider = Provider.of<UserViewModel>(context);
-    final typeProvider = Provider.of<MotelTypeViewModel>(context);
     return FutureBuilder(
       future: motelProvider.fetchMotels(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -75,38 +74,29 @@ class _MotelListState extends State<MotelList> {
                   children: motels.map((motel) => 
                     Column(
                       children: <Widget> [
-                        FutureBuilder(
-                          future: typeProvider.getTypeById(motel.typeId),
-                          builder: (BuildContext context, AsyncSnapshot snapshot) {
-                            if (snapshot.hasData) {
-                              MotelType businessType = snapshot.data;
-                              return InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => MotelDetailScreen(
-                                      motelName: motel.motelName,
-                                      type: businessType.type,
-                                      description: motel.description,
-                                      address: motel.address,
-                                      location: motel.location,
-                                      photo: motel.photo,
-                                      price: motel.price
-                                    )),
-                                  );
-                                },
-                                child: MotelCard(
-                                  motelName: motel.motelName,
-                                  city: "Masaya",
-                                  price: motel.price,
-                                  rating: randomNumber(0, 5).toString(),
-                                  photo: motel.photo,
-                                  type: businessType.type
-                                ),
-                              );
-                            }
-                            return Container();
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => MotelDetailScreen(
+                                motelName: motel.motelName,
+                                description: motel.description,
+                                address: motel.address,
+                                location: motel.location,
+                                photo: motel.photo,
+                                price: motel.price,
+                                type: motel.typeId,
+                              )),
+                            );
                           },
+                          child: MotelCard(
+                            motelName: motel.motelName,
+                            city: "Masaya",
+                            price: motel.price,
+                            rating: randomNumber(1, 5).toString(),
+                            photo: motel.photo,
+                            type: "Popular",
+                          ),
                         ),
                         /*InkWell(
                           onTap: () {
