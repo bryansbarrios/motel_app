@@ -4,6 +4,8 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:motel_app/ui/screens/FavoriteMotelsScreen.dart';
 import 'package:motel_app/ui/screens/HomeScreen.dart';
 import 'package:motel_app/ui/screens/MapScreen.dart';
+import 'package:motel_app/ui/screens/SearchScreen.dart';
+
 
 class BottomNav extends StatefulWidget {
   BottomNav({this.uid, this.fullName});
@@ -85,7 +87,7 @@ class _BottomNavState extends State<BottomNav> {
         return HomeScreen();   
         break;
       case 1:
-        
+        return Search();
         break;
       case 2:
         return FavoriteMotelsScreen();   

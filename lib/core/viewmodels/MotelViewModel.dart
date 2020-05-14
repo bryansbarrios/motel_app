@@ -17,6 +17,16 @@ class MotelViewModel extends ChangeNotifier {
     return motels;
   }
 
+  Future<List<Motel>> searchMotels( String query) async {
+    var result = await _db.getDataCollection();
+    
+    motels = result.documents
+      .map((document) => Motel.fromMap(document.data, document.documentID))
+      .toList();
+      
+    return motels;
+  }
+
   Stream<QuerySnapshot> fetchMotelsAsStream() {
     return _db.streamDataCollection();
   }
