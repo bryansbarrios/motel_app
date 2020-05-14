@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:motel_app/core/models/Motel.dart';
+import 'package:motel_app/core/models/User.dart';
 import 'package:motel_app/core/services/AuthService.dart';
-import 'package:motel_app/core/viewmodels/MotelTypeViewModel.dart';
 import 'package:motel_app/core/viewmodels/MotelViewModel.dart';
+import 'package:motel_app/core/viewmodels/UserViewModel.dart';
 import 'package:motel_app/ui/screens/MotelDetailScreen.dart';
 import 'package:motel_app/ui/widgets/HomeScreenExpanded.dart';
 import 'package:provider/provider.dart';
@@ -19,17 +20,18 @@ class MotelList extends StatefulWidget {
 
 class _MotelListState extends State<MotelList> {
   final AuthService _auth = AuthService();
-  String email = "";
+  String uid = "";
 
   @override
   void initState() { 
     super.initState();
-    getEmail();
+    getUid();
   }
 
   @override
   Widget build(BuildContext context) {
     final motelProvider = Provider.of<MotelViewModel>(context);
+    final userProvider = Provider.of<UserViewModel>(context);
     return FutureBuilder(
       future: motelProvider.fetchMotels(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -38,7 +40,22 @@ class _MotelListState extends State<MotelList> {
           return Column(
             children: <Widget>[
               SizedBox(height: 50,),
-              createContainer('Saludo e imagen', 'https://source.unsplash.com/random/200x200', email),
+              FutureBuilder(
+                future: userProvider.getUserById(uid),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    UserData user = snapshot.data;
+                    print("Nombre: ${user.fullName}");
+                    return createContainer('Saludo e imagen', 'https://source.unsplash.com/random/200x200', user.fullName);
+                  }
+                  return Padding(
+                    padding: EdgeInsets.all(20),
+                    child: Center(
+                        child: CircularProgressIndicator(),
+                    ),
+                  );
+                },
+              ),
               createContainer('Busca tu motel', null, null),
               createContainer('Moteles populares', null, null),
               Expanded(
@@ -128,10 +145,10 @@ class _MotelListState extends State<MotelList> {
     );
   }
 
-  void getEmail() async {
+  void getUid() async {
     final FirebaseUser user = await _auth.getCurrentUser();
     setState(() {
-      email = user.email;
+      uid = user.uid;
     }); // here you write the codes to input the data into firestore
   }
 }

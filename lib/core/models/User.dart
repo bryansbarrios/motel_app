@@ -2,13 +2,12 @@ class UserData {
   String uid;
   String fullName;
   String email;
-  String password;
 
-  UserData ({this.uid, this.fullName, this.email, this.password});
+  UserData ({this.uid, this.fullName, this.email});
 
   UserData.fromMap(Map data, String uid):
     uid = uid ?? '',
-    fullName = data ['fullname'] ?? '',
+    fullName = data ['fullName'] ?? '',
     email = data ['email'] ?? '';
 
   toJson() {
