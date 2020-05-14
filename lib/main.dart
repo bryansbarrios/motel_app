@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => MotelViewModel()),
+        ChangeNotifierProvider(create: (_) => MotelTypeViewModel()),
         ChangeNotifierProvider(create: (_) => UserViewModel()),
       ],
       child: MaterialApp(
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           backgroundColor: Color.fromRGBO(245,250,255,1),
           hintColor: Color.fromRGBO(248,249,253,1),
-          textTheme: GoogleFonts.pTSansTextTheme(
+          textTheme: GoogleFonts.googleSansTextTheme(
             Theme.of(context).textTheme,
           ),
         ),

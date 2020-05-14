@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:motel_app/core/models/Motel.dart';
 import 'package:motel_app/core/services/AuthService.dart';
+import 'package:motel_app/core/viewmodels/MotelTypeViewModel.dart';
 import 'package:motel_app/core/viewmodels/MotelViewModel.dart';
 import 'package:motel_app/ui/screens/MotelDetailScreen.dart';
 import 'package:motel_app/ui/widgets/HomeScreenExpanded.dart';
@@ -54,6 +55,7 @@ class _MotelListState extends State<MotelList> {
                               context,
                               MaterialPageRoute(builder: (context) => MotelDetailScreen(
                                 motelName: motel.motelName,
+                                type: motel.typeId,
                                 description: motel.description,
                                 address: motel.address,
                                 location: motel.location,
