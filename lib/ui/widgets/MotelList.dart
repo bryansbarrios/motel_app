@@ -86,7 +86,7 @@ class _MotelListState extends State<MotelList> {
                                     context,
                                     MaterialPageRoute(builder: (context) => MotelDetailScreen(
                                       motelName: motel.motelName,
-                                      type: motel.typeId,
+                                      type: businessType.type,
                                       description: motel.description,
                                       address: motel.address,
                                       location: motel.location,
