@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:motel_app/core/services/AuthService.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -28,6 +29,9 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
       height: double.infinity,
       width: double.infinity,
+      child: Center(
+        child: Icon(LineIcons.hotel, size: 120, color: Color.fromRGBO(255, 255, 255, .6)),
+      ),
     );
   }
 

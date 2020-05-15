@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:motel_app/ui/screens/FavoriteMotelsScreen.dart';
 import 'package:motel_app/ui/screens/HomeScreen.dart';
 import 'package:motel_app/ui/screens/MapScreen.dart';
 import 'package:motel_app/ui/screens/SearchScreen.dart';

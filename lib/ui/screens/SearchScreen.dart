@@ -53,9 +53,6 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: new AppBar(
-          title: Text('Búsqueda de Moteles'),
-        ),
         body: ListView(children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(10.0),
@@ -65,6 +62,7 @@ class _SearchState extends State<Search> {
               },
               decoration: InputDecoration(
                   prefixIcon: IconButton(
+                    onPressed: () => {},
                     color: Colors.black,
                     icon: Icon(Icons.search),
                     iconSize: 20.0,
@@ -121,7 +119,7 @@ Widget buildResultCard(data) {
           location:data['location'],
           photo: data['photo'],
           price:data['price'],
-          //type: data['type'],
+          type: data['typeId'],
          )));
          
     }

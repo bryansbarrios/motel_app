@@ -1,15 +1,21 @@
+import 'dart:math';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:motel_app/core/models/Motel.dart';
+import 'package:motel_app/core/models/User.dart';
 import 'package:motel_app/core/services/AuthService.dart';
 import 'package:motel_app/core/viewmodels/MotelViewModel.dart';
+import 'package:motel_app/core/viewmodels/UserViewModel.dart';
 import 'package:motel_app/ui/screens/MotelDetailScreen.dart';
-import 'package:motel_app/ui/widgets/HomeScreenExpanded.dart';
+import 'package:motel_app/ui/widgets/HeroContainer.dart';
 import 'package:provider/provider.dart';
+import 'MotelCard.dart';
 
-import 'HomeScreenContainers.dart';
+// int acc = 0;
 
-int acc = 0;
+Random _random = new Random();
+int randomNumber(int min, int max) => min + _random.nextInt(max - min);
 
 class MotelList extends StatefulWidget {
   @override
@@ -18,17 +24,18 @@ class MotelList extends StatefulWidget {
 
 class _MotelListState extends State<MotelList> {
   final AuthService _auth = AuthService();
-  String email = "";
+  String uid = "";
 
   @override
   void initState() { 
     super.initState();
-    getEmail();
+    getUid();
   }
 
   @override
   Widget build(BuildContext context) {
     final motelProvider = Provider.of<MotelViewModel>(context);
+    final userProvider = Provider.of<UserViewModel>(context);
     return FutureBuilder(
       future: motelProvider.fetchMotels(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -36,14 +43,29 @@ class _MotelListState extends State<MotelList> {
           List<Motel> motels = snapshot.data;
           return Column(
             children: <Widget>[
-              SizedBox(height: 50,),
-              createContainer('Saludo e imagen', 'https://source.unsplash.com/random/200x200', email),
-              createContainer('Busca tu motel', null, null),
-              createContainer('Moteles populares', null, null),
+              //SizedBox(height: 50,),
+              FutureBuilder(
+                future: userProvider.getUserById(uid),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    UserData user = snapshot.data;
+                    print("Nombre: ${user.fullName}");
+                    return HeroContainer(fullName: user.fullName); //createContainer('Saludo e imagen', 'https://source.unsplash.com/random/200x200', user.fullName);
+                  }
+                  return Padding(
+                    padding: EdgeInsets.all(0),
+                    child: Center(
+                        child: CircularProgressIndicator(),
+                    ),
+                  );
+                },
+              ),
+              //createContainer('Busca tu motel', null, null),
+              //createContainer('Moteles populares', null, null),
               Expanded(
                 child: ListView(
-                  padding: EdgeInsets.all(10),
-                  shrinkWrap: true,
+                  padding: EdgeInsets.all(15),
+                  shrinkWrap: false,
                   scrollDirection: Axis.vertical, 
                   children: motels.map((motel) => 
                     Column(
@@ -58,11 +80,36 @@ class _MotelListState extends State<MotelList> {
                                 address: motel.address,
                                 location: motel.location,
                                 photo: motel.photo,
+                                price: motel.price,
+                                type: motel.typeId,
+                              )),
+                            );
+                          },
+                          child: MotelCard(
+                            motelName: motel.motelName,
+                            city: "Masaya",
+                            price: motel.price,
+                            rating: randomNumber(1, 5).toString(),
+                            photo: motel.photo,
+                            type: "Popular",
+                          ),
+                        ),
+                        /*InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => MotelDetailScreen(
+                                motelName: motel.motelName,
+                                type: motel.typeId,
+                                description: motel.description,
+                                address: motel.address,
+                                location: motel.location,
+                                photo: motel.photo,
                                 price: motel.price
                               )),
                             );
                           },
-                          child: Container(
+                          /*child: Container(
                             margin: EdgeInsets.symmetric(vertical: 10.0),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20.0),
@@ -109,8 +156,8 @@ class _MotelListState extends State<MotelList> {
                                 ],
                               )
                             ),
-                          ),
-                        ),
+                          ),*/
+                        ),*/
                       ],
                     )
                   ).toList()
@@ -126,10 +173,10 @@ class _MotelListState extends State<MotelList> {
     );
   }
 
-  void getEmail() async {
+  void getUid() async {
     final FirebaseUser user = await _auth.getCurrentUser();
     setState(() {
-      email = user.email;
+      uid = user.uid;
     }); // here you write the codes to input the data into firestore
   }
 }
