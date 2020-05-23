@@ -135,8 +135,8 @@ class _MapScreenState extends State<MapScreen> {
 
        markers: [
          Marker(
-          width: 500.0,
-          height: 500.0,
+          width: 24.0,
+          height: 24.0,
           point: new LatLng( ubicacionUsuario.latitud, ubicacionUsuario.longitud ),
           builder: (context) =>  Container(
             child: Icon(Icons.location_on, color: Colors.red, size: 30,),
@@ -153,8 +153,8 @@ class _MapScreenState extends State<MapScreen> {
 
        markers: data.map((motel) => Marker(
 
-         width: 500.0,
-         height: 500.0,
+         width: 24.0,
+         height: 24.0,
          point: new LatLng(motel.location.latitude, motel.location.longitude),
          
          builder: (context) =>  Container(
