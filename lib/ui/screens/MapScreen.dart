@@ -135,8 +135,8 @@ class _MapScreenState extends State<MapScreen> {
 
        markers: [
          Marker(
-          width: 24.0,
-          height: 24.0,
+          width: 48.0,
+          height: 48.0,
           point: new LatLng( ubicacionUsuario.latitud, ubicacionUsuario.longitud ),
           builder: (context) =>  Container(
             child: Icon(Icons.location_on, color: Colors.red, size: 30,),
@@ -153,8 +153,8 @@ class _MapScreenState extends State<MapScreen> {
 
        markers: data.map((motel) => Marker(
 
-         width: 24.0,
-         height: 24.0,
+         width: 48.0,
+         height: 48.0,
          point: new LatLng(motel.location.latitude, motel.location.longitude),
          
          builder: (context) =>  Container(
@@ -264,8 +264,6 @@ class _MapScreenState extends State<MapScreen> {
                     onPressed: () {_irMotelMasCercano();},),
               ],
             ),
-      
-
           ],
         )
       
