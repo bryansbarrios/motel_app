@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              LoginHeader("INICIAR SESIÓN", "Accede fácilmente a tus moteles favoritos"),
+              LoginHeader("INICIAR SESIÓN", "Accede fácilmente a tu motel más cercano."),
               Expanded(
                 child: Container(
                   width: double.infinity,

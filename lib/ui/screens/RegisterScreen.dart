@@ -57,7 +57,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              LoginHeader("REGÍSTRATE", "Califica los moteles según tu experiencia"),
+              LoginHeader("REGÍSTRATE", "Visita los moteles más populares."),
               Expanded(
                 child: Container(
                   width: double.infinity,
